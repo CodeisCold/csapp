@@ -1,24 +1,16 @@
 #include "csapp.h"
 
-void *test(void *vargp) {
-    char *b;
-    b = (char*)malloc(4 * sizeof(char));
-    strcpy(b, "tes");
-    return (void *)b;
-}
-
 int main(int argc, char const *argv[])
 {
-	char *a;
-    // void *b;
-    pthread_t tid;
-	// a = test();
+	int **t;
+    int *test;
     
-    Pthread_create(&tid, NULL, test, NULL);
-    // pthread_join(tid, &b);
-    // printf("%d\n", (int)*b);
-    Pthread_join(tid, (void **)&a);
-    printf("%s\n", a);
+    t = (int **)malloc(sizeof(int *));
+    t[0] = (int *)malloc(sizeof(int));
+    test = t[0];
+    *(t[0]) = 10;
+    free(t);
+    printf("%d\n", *test);
 
 	return 0;
 }
